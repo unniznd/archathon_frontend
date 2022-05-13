@@ -4,7 +4,7 @@ import 'package:frontend/screens/market.dart';
 import 'package:frontend/screens/profile.dart';
 import 'package:frontend/screens/trade.dart';
 import 'package:frontend/screens/watchlist.dart';
-import 'package:frontend/screens/connect.dart';
+import 'package:frontend/screens/game.dart';
 import 'package:frontend/util/error_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -74,9 +74,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.sms_rounded,
+                Icons.play_circle_rounded,
               ),
-              label: 'Connect',
+              label: "Play",
             ),
             BottomNavigationBarItem(
               icon: CircleAvatar(
