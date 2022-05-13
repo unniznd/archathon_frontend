@@ -39,7 +39,7 @@ class _MarketDetailScreenState extends State<MarketDetailScreen> {
   @override
   Widget build(BuildContext context) {
     var _channel = WebSocketChannel.connect(
-      Uri.parse('wss://stream.binance.com:9443/ws/${id}@trade'),
+      Uri.parse('wss://stream.binance.com:9443/ws/${id.toLowerCase()}@trade'),
     );
     return Scaffold(
       appBar: AppBar(
