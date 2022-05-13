@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+
+import 'package:frontend/screens/market_detail.dart';
 
 class MarketScreen extends StatefulWidget {
   const MarketScreen({super.key});
@@ -12,29 +15,39 @@ class _MarketScreenState extends State<MarketScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "CrpytMaster",
-          style: TextStyle(
-            color: Colors.black,
+        title: DefaultTextStyle(
+          style: const TextStyle(
             fontSize: 26,
+            color: Colors.black,
+          ),
+          child: AnimatedTextKit(
+            pause: Duration(milliseconds: 2000),
+            animatedTexts: [
+              TyperAnimatedText(
+                'CrpytMaster',
+                speed: Duration(milliseconds: 100),
+              ),
+              TyperAnimatedText(
+                'Market',
+                speed: Duration(milliseconds: 100),
+              ),
+            ],
           ),
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions: [
-          // Icon(
-          //   Icons.favorite,
-          //   color: Colors.black,
-          //   size: 35,
-          // ),
-          // SizedBox(
-          //   width: 10,
-          // ),
-        ],
       ),
       body: ListView(
         children: [
           ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (builder) => MarketDetailScreen(),
+                ),
+              );
+            },
             leading: CircleAvatar(
               child: Icon(Icons.abc),
             ),
