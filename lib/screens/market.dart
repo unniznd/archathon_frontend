@@ -3,7 +3,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:frontend/screens/market_detail.dart';
-import 'package:frontend/util/error_screen.dart';
 
 class MarketScreen extends StatefulWidget {
   const MarketScreen({super.key});

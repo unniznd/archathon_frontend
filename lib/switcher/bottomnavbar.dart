@@ -5,7 +5,6 @@ import 'package:frontend/screens/profile.dart';
 import 'package:frontend/screens/trade.dart';
 import 'package:frontend/screens/watchlist.dart';
 import 'package:frontend/screens/game.dart';
-import 'package:frontend/util/error_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   static const routeName = 'bottomNavigation_screen';
@@ -14,18 +13,11 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  var _load = false;
-  var _isError = false;
   int _selectedPage = 0;
   void onTabChangedListener(position) {
     setState(() {
       _selectedPage = position;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
@@ -38,16 +30,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ProfileScreen()
     ];
     return Scaffold(
-      body: _isError
-          ? ErrorScreen(
-              message: "something went wrong",
-              reload: () {},
-            )
-          : _load
-              ? const Scaffold(
-                  body: Center(child: CircularProgressIndicator()),
-                )
-              : widList[_selectedPage],
+      body: widList[_selectedPage],
       bottomNavigationBar: SizedBox(
         height: 86,
         child: BottomNavigationBar(
