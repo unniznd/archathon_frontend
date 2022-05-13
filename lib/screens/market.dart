@@ -21,7 +21,6 @@ class _MarketScreenState extends State<MarketScreen> {
         final Map r = json.decode(res.body);
         yield r['data'];
       }
-      yield Null;
     }
   }
 
@@ -55,49 +54,36 @@ class _MarketScreenState extends State<MarketScreen> {
       body: StreamBuilder(
         stream: get_price(),
         builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        "http://10.0.2.2:8000" + snapshot.data[index]["logo"],
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      "http://10.0.2.2:8000" + snapshot.data[index]["logo"],
+                    ),
+                  ),
+                  title: Text(snapshot.data[index]["name"]),
+                  subtitle: Text(snapshot.data[index]["short"]),
+                  trailing: Text(snapshot.data[index]['price'].toString()),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MarketDetailScreen(
+                          snapshot.data[index]["short"] + "USDT",
+                        ),
                       ),
-                    ),
-                    title: Text(snapshot.data[index]["name"]),
-                    subtitle: Text(snapshot.data[index]["short"]),
-                    trailing: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(snapshot.data[index]['price'].toString()),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          "+0.21%",
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            }
-
-            return Center(
-              child: CircularProgressIndicator(),
+                    );
+                  },
+                );
+              },
             );
           }
-          return Container();
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );
