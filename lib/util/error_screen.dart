@@ -33,7 +33,6 @@ class _ErrorScreenState extends State<ErrorScreen> {
                   child: Container(
                 child: Column(
                   children: [
-                    Image(image: AssetImage("assets/images/nothing.gif")),
                     Center(
                         child: Text(
                       widget.message,
