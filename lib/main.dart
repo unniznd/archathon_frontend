@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:frontend/switcher/bottomnavbar.dart';
+
 void main() {
   runApp(const ArchathonApp());
 }
@@ -16,7 +18,9 @@ class _ArchathonAppState extends State<ArchathonApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(),
+      home: Scaffold(
+        body: BottomNavBar(),
+      ),
     );
   }
 }
