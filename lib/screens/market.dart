@@ -21,6 +21,7 @@ class _MarketScreenState extends State<MarketScreen> {
             color: Colors.black,
           ),
           child: AnimatedTextKit(
+            repeatForever: true,
             pause: Duration(milliseconds: 2000),
             animatedTexts: [
               TyperAnimatedText(

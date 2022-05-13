@@ -16,7 +16,6 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   var _load = false;
   var _isError = false;
-  //final authObj = Auth();
   int _selectedPage = 0;
   void onTabChangedListener(position) {
     setState(() {
