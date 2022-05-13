@@ -98,10 +98,7 @@ class _MarketScreenState extends State<MarketScreen> {
               child: CircularProgressIndicator(),
             );
           }
-          return Center(
-            child:
-                ErrorScreen(message: "Error loading data", reload: get_price),
-          );
+          return Container();
         },
       ),
     );
