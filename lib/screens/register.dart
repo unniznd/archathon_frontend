@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:frontend/backend/auth.dart';
+import 'package:frontend/screens/login.dart';
 import 'package:frontend/switcher/bottomnavbar.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController username = new TextEditingController();
   TextEditingController password = new TextEditingController();
+  TextEditingController email = new TextEditingController();
 
   void _showToast(BuildContext context, String txt) {
     final scaffold = ScaffoldMessenger.of(context);
@@ -27,6 +30,16 @@ class _LoginScreenState extends State<LoginScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text(
+          "CrpytMaster",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        elevation: 0,
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
@@ -34,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.25,
+                height: height * 0.15,
               ),
               TextField(
                 controller: username,
@@ -42,6 +55,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   border: OutlineInputBorder(),
                   hintText: 'Username',
                   label: Text('Username'),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              TextField(
+                controller: email,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Email',
+                  label: Text('Email'),
                 ),
               ),
               SizedBox(
@@ -59,7 +83,31 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(
-                height: height * 0.04,
+                height: height * 0.025,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Already Have An Account",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.01,
               ),
               Container(
                 height: 50,
@@ -67,14 +115,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ElevatedButton(
                   onPressed: () async {
                     if (username.text != '' && password.text != '') {
-                      if (await authenticate(username.text, password.text)) {
+                      if (await create_account(
+                          username.text, password.text, email.text)) {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (context) => BottomNavBar(),
                           ),
                         );
                       } else {
-                        _showToast(context, "Invalid Credintials");
+                        _showToast(
+                          context,
+                          "Invalid Credintials or User exists",
+                        );
                       }
                     } else {
                       _showToast(context, 'Empty username or password');

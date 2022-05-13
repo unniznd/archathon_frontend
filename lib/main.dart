@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/switcher/bottomnavbar.dart';
 import 'package:frontend/screens/login.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:frontend/screens/register.dart';
 
 const storage = FlutterSecureStorage();
 
@@ -23,19 +24,20 @@ class _ArchathonAppState extends State<ArchathonApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: FutureBuilder(
-          future: storage.read(key: "token"),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.data == null) {
-                return LoginScreen();
-              }
+        // body: FutureBuilder(
+        //   future: storage.read(key: "token"),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.done) {
+        //       if (snapshot.data == null) {
+        //         return LoginScreen();
+        //       }
 
-              return BottomNavBar();
-            }
-            return Scaffold();
-          },
-        ),
+        //       return BottomNavBar();
+        //     }
+        //     return Scaffold();
+        //   },
+        // ),
+        body: RegisterScreen(),
       ),
     );
   }

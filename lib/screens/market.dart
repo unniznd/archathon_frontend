@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:frontend/screens/market_detail.dart';
 
+import '../main.dart';
+
 class MarketScreen extends StatefulWidget {
   const MarketScreen({super.key});
 
@@ -16,6 +18,10 @@ class _MarketScreenState extends State<MarketScreen> {
     while (true) {
       var res = await http.get(
         Uri.parse("http://10.0.2.2:8000/price/"),
+        headers: {
+          "Authorization":
+              "Token " + (await storage.read(key: "token")).toString(),
+        },
       );
       if (res.statusCode == 200) {
         final Map r = json.decode(res.body);
