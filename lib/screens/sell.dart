@@ -22,7 +22,7 @@ class _SellScreenState extends State<SellScreen> {
     Map r = {};
     while (true) {
       var res = await http.get(
-        Uri.parse("http://10.0.2.2:8000/profile/"),
+        Uri.parse("https://archathonbackendserver.herokuapp.com/profile/"),
         headers: {
           "Authorization":
               "Token " + (await storage.read(key: "token")).toString(),
@@ -39,7 +39,10 @@ class _SellScreenState extends State<SellScreen> {
   Stream? get_price(String index) async* {
     while (true) {
       var res = await http.get(
-        Uri.parse("http://10.0.2.2:8000/price/" + index + "USDT" + "/"),
+        Uri.parse("https://archathonbackendserver.herokuapp.com/price/" +
+            index +
+            "USDT" +
+            "/"),
         headers: {
           "Authorization":
               "Token " + (await storage.read(key: "token")).toString(),

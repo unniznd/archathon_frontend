@@ -15,7 +15,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Map r = {};
     while (true) {
       var res = await http.get(
-        Uri.parse("http://10.0.2.2:8000/profile/"),
+        Uri.parse("https://archathonbackendserver.herokuapp.com/profile/"),
         headers: {
           "Authorization":
               "Token " + (await storage.read(key: "token")).toString(),
@@ -63,7 +63,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         CircleAvatar(
                           radius: 40,
-                          child: Text("MA"),
+                          backgroundColor: Colors.blue,
+                          backgroundImage: AssetImage("assets/images/logo.jpg"),
                         ),
                         SizedBox(
                           width: 50,

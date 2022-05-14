@@ -17,7 +17,7 @@ class _MarketScreenState extends State<MarketScreen> {
   Stream? get_price() async* {
     while (true) {
       var res = await http.get(
-        Uri.parse("http://10.0.2.2:8000/price/"),
+        Uri.parse("https://archathonbackendserver.herokuapp.com/price/"),
         headers: {
           "Authorization":
               "Token " + (await storage.read(key: "token")).toString(),
@@ -57,40 +57,57 @@ class _MarketScreenState extends State<MarketScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: StreamBuilder(
-        stream: get_price(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/" +
-                        snapshot.data[index]["short"] +
-                        ".png"),
-                  ),
-                  title: Text(snapshot.data[index]["name"]),
-                  subtitle: Text(snapshot.data[index]["short"]),
-                  trailing: Text(snapshot.data[index]['price'].toString()),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MarketDetailScreen(
-                          snapshot.data[index]["short"] + "USDT",
+      body: Container(
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            fit: BoxFit.cover,
+            colorFilter: new ColorFilter.mode(
+                Colors.black.withOpacity(0.1), BlendMode.dstATop),
+            image: AssetImage("assets/images/logo.jpg"),
+          ),
+        ),
+
+        // decoration: BoxDecoration(
+        //   image: DecorationImage(
+        //     image: AssetImage("assets/images/logo.jpg"),
+        //     fit: BoxFit.cover,
+        //   ),
+        // ),
+        child: StreamBuilder(
+          stream: get_price(),
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/" +
+                          snapshot.data[index]["short"] +
+                          ".png"),
+                    ),
+                    title: Text(snapshot.data[index]["name"]),
+                    subtitle: Text(snapshot.data[index]["short"]),
+                    trailing: Text(snapshot.data[index]['price'].toString()),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MarketDetailScreen(
+                            snapshot.data[index]["short"] + "USDT",
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                );
-              },
+                      );
+                    },
+                  );
+                },
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+          },
+        ),
       ),
     );
   }

@@ -4,7 +4,7 @@ import '../main.dart';
 
 Future<bool> authenticate(String username, var password) async {
   var response = await http.post(
-    Uri.parse('http://10.0.2.2:8000/login/'),
+    Uri.parse('https://archathonbackendserver.herokuapp.com/login/'),
     body: {"username": username, "password": password.toString()},
   );
 
@@ -19,7 +19,7 @@ Future<bool> authenticate(String username, var password) async {
 
 Future<bool> create_account(String username, var password, String email) async {
   var response = await http.post(
-    Uri.parse('http://10.0.2.2:8000/register/'),
+    Uri.parse('https://archathonbackendserver.herokuapp.com/register/'),
     body: {
       "username": username,
       "password": password.toString(),
