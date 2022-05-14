@@ -66,9 +66,9 @@ class _MarketScreenState extends State<MarketScreen> {
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      "http://10.0.2.2:8000" + snapshot.data[index]["logo"],
-                    ),
+                    backgroundImage: AssetImage("assets/images/" +
+                        snapshot.data[index]["short"] +
+                        ".png"),
                   ),
                   title: Text(snapshot.data[index]["name"]),
                   subtitle: Text(snapshot.data[index]["short"]),
