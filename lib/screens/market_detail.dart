@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:frontend/switcher/bottomnavbar.dart';
 
 class MarketDetailScreen extends StatefulWidget {
   late String id;
@@ -142,7 +143,14 @@ class _MarketDetailScreenState extends State<MarketDetailScreen> {
                     fontSize: 28,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BottomNavBar(),
+                    ),
+                  );
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.green),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -163,7 +171,14 @@ class _MarketDetailScreenState extends State<MarketDetailScreen> {
                     fontSize: 28,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BottomNavBar(),
+                    ),
+                  );
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.red),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(

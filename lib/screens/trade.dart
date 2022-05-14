@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/buy.dart';
+import 'package:frontend/screens/sell.dart';
 
 class TradeScreen extends StatefulWidget {
   const TradeScreen({super.key});
@@ -31,7 +33,10 @@ class _TradeScreenState extends State<TradeScreen> {
             ),
           ),
           body: const TabBarView(
-            children: [Text("Buy"), Text("Sell")],
+            children: [
+              BuyScreen(),
+              SellScreen(),
+            ],
           ),
         ),
       ),

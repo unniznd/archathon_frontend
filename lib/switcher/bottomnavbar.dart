@@ -8,12 +8,13 @@ import 'package:frontend/screens/game.dart';
 
 class BottomNavBar extends StatefulWidget {
   static const routeName = 'bottomNavigation_screen';
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedPage = 0;
+  int _selectedPage = 2;
   void onTabChangedListener(position) {
     setState(() {
       _selectedPage = position;

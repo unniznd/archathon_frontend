@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:frontend/backend/auth.dart';
+import 'package:frontend/screens/register.dart';
 import 'package:frontend/switcher/bottomnavbar.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -60,6 +61,30 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(
                 height: height * 0.04,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterScreen(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "No Account? Sign Up",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.02,
               ),
               Container(
                 height: 50,
