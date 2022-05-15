@@ -25,7 +25,7 @@ class _ConnectScreenState extends State<ConnectScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Game Name",
+                      "CrpytMaster",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: 40,
@@ -34,7 +34,7 @@ class _ConnectScreenState extends State<ConnectScreen> {
                       ),
                     ),
                     Text(
-                      "Description Here",
+                      "Here we give you CrpytMaster, Learn Play and Invest. Don't Wait Press that Play Button",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
